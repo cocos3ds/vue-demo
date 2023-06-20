@@ -1,20 +1,27 @@
 <script setup lang="ts">
-import * as monaco from 'monaco-editor/esm/vs/editor/editor.api'
+import * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
+
 import { ref, onMounted } from 'vue'
 // @ts-ignore
-import customLangMonarch from '@/custom-lang-monarch'
+// import customLangMonarch from '@/custom-lang-monarch'
 
-monaco.languages.register({ id: 'custom' })
-monaco.languages.setMonarchTokensProvider('custom', customLangMonarch)
+// monaco.languages.register({ id: 'custom' })
+// monaco.languages.setMonarchTokensProvider('custom', customLangMonarch)
 
 
 const editor = ref()
 
+let editor_instance;
 onMounted(() => {
-   monaco.editor.create(editor.value, {
-    value: `{}`,
-    language: 'custom',
+  editor_instance = monaco.editor.create(editor.value, {
+    value: ['function x() {', '\tconsole.log("Hello world!");', '}'].join('\n'),
+	  language: 'javascript',
+    minimap:{
+      enabled:false
+    }
   })
+
+  console.log(editor_instance.getValue())
 })
 </script>
 
