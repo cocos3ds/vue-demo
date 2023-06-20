@@ -5,6 +5,7 @@ import { ref, onMounted } from 'vue'
 import customLangMonarch from '@/custom-lang-monarch'
 
 monaco.languages.register({ id: 'custom' })
+monaco.languages.setMonarchTokensProvider('custom', customLangMonarch)
 
 
 const editor = ref()
@@ -12,7 +13,7 @@ const editor = ref()
 onMounted(() => {
    monaco.editor.create(editor.value, {
     value: `{}`,
-    language: 'javascript',
+    language: 'custom',
   })
 })
 </script>
@@ -23,7 +24,7 @@ onMounted(() => {
 
 <style scoped>
 #editor {
-  width: 45vw;
-  height: 100vh;
+  width: 40vw;
+  height: 90vh;
 }
 </style>
