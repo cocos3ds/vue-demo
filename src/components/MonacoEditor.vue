@@ -8,7 +8,7 @@ import { ref, onMounted } from 'vue'
 // monaco.languages.register({ id: 'custom' })
 // monaco.languages.setMonarchTokensProvider('custom', customLangMonarch)
 
-
+const emit = defineEmits(['response'])
 const editor = ref()
 
 let editor_instance;
@@ -20,8 +20,13 @@ onMounted(() => {
       enabled:false
     }
   })
-
-  console.log(editor_instance.getValue())
+  if(editor_instance){
+    editor_instance.onDidChangeModelContent(()=>{
+      emit('response',editor_instance.getValue())
+    })
+  }
+  
+  
 })
 </script>
 

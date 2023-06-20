@@ -5,7 +5,7 @@
             <el-container>
                 <el-aside width="45%">
                     <div>
-                        <MonacoEditor/>
+                        <MonacoEditor @response="(payload)=>{json = payload}"/>
                     </div>
                 </el-aside>
                 <el-main>
