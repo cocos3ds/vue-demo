@@ -11,7 +11,7 @@ import { ref, onMounted } from 'vue'
 const emit = defineEmits(['response'])
 const editor = ref()
 
-let editor_instance;
+let editor_instance:monaco.editor.IStandaloneCodeEditor;
 onMounted(() => {
   editor_instance = monaco.editor.create(editor.value, {
     value: ['function x() {', '\tconsole.log("Hello world!");', '}'].join('\n'),
