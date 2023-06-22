@@ -1,7 +1,7 @@
 <template>
     <div class="common-layout">
         <el-container>
-            <el-header>JSON 编辑器</el-header>
+            <el-header>JSON Editor</el-header>
             <el-container>
                 <el-aside width="45%">
                     <div>

@@ -14,8 +14,8 @@ const editor = ref()
 let editor_instance:monaco.editor.IStandaloneCodeEditor;
 onMounted(() => {
   editor_instance = monaco.editor.create(editor.value, {
-    value: ['function x() {', '\tconsole.log("Hello world!");', '}'].join('\n'),
-	  language: 'javascript',
+    value: '{"please type json string":"here"}',
+	  language: 'json',
     minimap:{
       enabled:false
     }
@@ -25,6 +25,7 @@ onMounted(() => {
       emit('response',editor_instance.getValue())
     })
   }
+  emit('response',editor_instance.getValue())
   
   
 })
