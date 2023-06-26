@@ -9,7 +9,7 @@
                             <el-menu-item index="1">About</el-menu-item>
                             <el-menu-item index="2">Introduce json</el-menu-item>
                             <el-menu-item index="3">Text Diff</el-menu-item>
-                            <el-menu-item index="3">Learn to code</el-menu-item>
+                            <el-menu-item index="4">Learn to code</el-menu-item>
                         </el-menu>
                     </el-main>
                 </el-container>
