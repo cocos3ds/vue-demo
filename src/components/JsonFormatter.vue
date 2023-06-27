@@ -36,14 +36,21 @@
 import { ref, computed } from 'vue';
 import VueJsonPretty from 'vue-json-pretty';
 import MonacoEditor from './MonacoEditor.vue'
+import JSConfetti from 'js-confetti'
 import 'vue-json-pretty/lib/styles.css';
 let json = ref('')
 const activeIndex = ref('1')
-
+const confetti = new JSConfetti()
+let count = 0;
 const json_obj = computed(() => {
     if (json.value != '') {
         try {
-            return JSON.parse(json.value)
+            let result =  JSON.parse(json.value)
+            if(count == 1){
+                confetti.addConfetti();
+            }
+            count++;
+            return result;
         } catch (e) {
             return {}
         }
@@ -65,5 +72,8 @@ const json_obj = computed(() => {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+#editor {
+    border: 1px solid #0000003b
 }
 </style>
