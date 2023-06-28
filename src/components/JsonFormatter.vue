@@ -6,58 +6,36 @@
                     <el-aside width="200px" class="logo-area">JSON Editor</el-aside>
                     <el-main>
                         <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal">
-                            <el-menu-item index="1">About</el-menu-item>
-                            <el-menu-item index="2">Introduce json</el-menu-item>
-                            <el-menu-item index="3">Text Diff</el-menu-item>
-                            <el-menu-item index="4">Learn to code</el-menu-item>
+                            <el-menu-item index="1" @click="showHomeView">Home</el-menu-item>
+                            <el-menu-item index="2" @click="showComeSoonView">Introduce json</el-menu-item>
+                            <el-menu-item index="3" @click="showComeSoonView">Text Diff</el-menu-item>
+                            <el-menu-item index="4" @click="showComeSoonView">Learn to code</el-menu-item>
                         </el-menu>
                     </el-main>
                 </el-container>
-
             </el-header>
-
-            <el-container>
-                <el-aside width="45%">
-                    <div>
-                        <MonacoEditor @response="(payload) => { json = payload }" />
-                    </div>
-                </el-aside>
-                <el-main class="json-preview-area">
-                    <div>
-                        <vue-json-pretty :data="json_obj" :showLineNumber="true" :editable="true" />
-                    </div>
-                </el-main>
-            </el-container>
+            <component :is="currentView" />
         </el-container>
     </div>
 </template>
   
 <script setup lang="ts">
-import { ref, computed } from 'vue';
-import VueJsonPretty from 'vue-json-pretty';
-import MonacoEditor from './MonacoEditor.vue'
-import JSConfetti from 'js-confetti'
-import 'vue-json-pretty/lib/styles.css';
-let json = ref('')
-const activeIndex = ref('1')
-const confetti = new JSConfetti()
-let count = 0;
-const json_obj = computed(() => {
-    if (json.value != '') {
-        try {
-            let result =  JSON.parse(json.value)
-            if(count == 1){
-                confetti.addConfetti();
-            }
-            count++;
-            return result;
-        } catch (e) {
-            return {}
-        }
-    }
-    return {}
+import {ref,computed} from "vue"
+import CodeView from './CodeView.vue'
+import ComeSoon from './ComeSoon.vue'
 
-})
+const activeIndex = ref('1')
+let currentView = ref(CodeView)
+
+function showComeSoonView(){
+    currentView.value = ComeSoon
+}
+
+function showHomeView(){
+    currentView.value = CodeView
+}
+
+
 
 </script>
 
