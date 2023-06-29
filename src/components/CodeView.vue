@@ -30,11 +30,13 @@ const json_obj = computed(() => {
             if(count == 1){
                 confetti.addConfetti();
             }
-            // @ts-ignore
-            gtag('event', 'inputjson', {
-                'app_name': 'jsonv2',
-                'screen_name': 'home'
-                });
+            if(count >= 1){
+                // @ts-ignore
+                gtag('event', 'inputjson', {
+                                'app_name': 'jsonv2',
+                                'screen_name': 'home'
+                                });
+            }
             count++;
             return result;
         } catch (e) {

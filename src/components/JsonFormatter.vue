@@ -20,18 +20,18 @@
 </template>
   
 <script setup lang="ts">
-import {ref,computed} from "vue"
+import { ref, computed } from "vue"
 import CodeView from './CodeView.vue'
 import ComeSoon from './ComeSoon.vue'
 
 const activeIndex = ref('1')
 let currentView = ref(CodeView)
 
-function showComeSoonView(){
+function showComeSoonView() {
     currentView.value = ComeSoon
 }
 
-function showHomeView(){
+function showHomeView() {
     currentView.value = CodeView
 }
 
@@ -51,6 +51,7 @@ function showHomeView(){
     justify-content: center;
     align-items: center;
 }
+
 #editor {
     border: 1px solid #0000003b
 }
