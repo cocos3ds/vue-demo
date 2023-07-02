@@ -5,38 +5,25 @@
                 <el-container>
                     <el-aside width="200px" class="logo-area">JSON Editor</el-aside>
                     <el-main>
-                        <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal">
-                            <el-menu-item index="1" @click="showHomeView">Home</el-menu-item>
-                            <el-menu-item index="2" @click="showComeSoonView">Introduce json</el-menu-item>
-                            <el-menu-item index="3" @click="showComeSoonView">Text Diff</el-menu-item>
-                            <el-menu-item index="4" @click="showComeSoonView">Learn to code</el-menu-item>
+                        <el-menu :default-active="defaultIndex" class="jsonv2-menu" mode="horizontal" router="true">
+                            <el-menu-item index="/">Home</el-menu-item>
+                            <el-menu-item index="/about">Introduce json</el-menu-item>
+                            <el-menu-item index="/text-diff">Text Diff</el-menu-item>
+                            <el-menu-item index="/learn-to-code">Learn to code</el-menu-item>
                         </el-menu>
                     </el-main>
                 </el-container>
             </el-header>
-            <component :is="currentView" />
+            <router-view></router-view>
         </el-container>
     </div>
 </template>
   
 <script setup lang="ts">
-import { ref, computed } from "vue"
-import CodeView from './CodeView.vue'
-import ComeSoon from './ComeSoon.vue'
-
-const activeIndex = ref('1')
-let currentView = ref(CodeView)
-
-function showComeSoonView() {
-    currentView.value = ComeSoon
-}
-
-function showHomeView() {
-    currentView.value = CodeView
-}
-
-
-
+import { ref ,computed} from "vue"
+import {useRoute} from 'vue-router'
+const route= useRoute();
+let defaultIndex = computed(()=>route.path)
 </script>
 
 <style scoped>
@@ -45,7 +32,9 @@ function showHomeView() {
     height: 873px;
     border: 1px solid #626467;
 }
-
+.jsonv2-menu  a{
+    text-decoration: none; color: inherit;
+}
 .logo-area {
     display: flex;
     justify-content: center;
